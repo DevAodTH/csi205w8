@@ -40,8 +40,13 @@ import { Input } from "@/components/tailgrids/core/input";
 import { Label } from "@/components/tailgrids/core/label";
 import { Backdrop} from "@/components/tailgrids/core/overlay";
 import { TextField } from "@/components/tailgrids/core/text-field";
+import { checkLogin } from "@/utils/login";
+import { useRouter } from "next/navigation";
 
 export default function Page() {
+  const router = useRouter();
+  useEffect(()=>checkLogin(router, "/todos"), [router]);
+
   const [isloading, setLoading] = useState<boolean>(true);
   const [todosRaw, setTodosRaw] = useState<TodoType[]>([]);
   const [todo, setTodo] = useState<TodoType[]>([]);
@@ -227,7 +232,7 @@ export default function Page() {
                     {todo.completed ? (
                       <Button
                         variant="success"
-                        className=" pointer-events-none"
+                        className="pointer-events-none"
                       >
                         Done <Check />
                       </Button>

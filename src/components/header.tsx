@@ -19,7 +19,6 @@ export default function Header() {
         <div className="mt-4">
             <Badge className="rounded-xl py-1 px-2 bg-gray-700 text-white">FRONT END SOFTWARE DEVELOPMENT</Badge>
         </div>
-
     </div>
   );
 }
