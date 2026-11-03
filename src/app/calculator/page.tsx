@@ -1,11 +1,17 @@
 'use client';
 import React, { useState, useEffect } from 'react';
 import { Button } from '@/components/tailgrids/core/button';
+import { checkLogin } from '@/utils/login';
+import { useRouter } from 'next/navigation';
 
 const ERROR = 'Error';
 const MAX_DIGITS = 9;
 
 export default function Calculator() {
+  const router = useRouter();
+  useEffect(()=>checkLogin(router, "/calculator"), [router]);
+
+
   const [display, setDisplay] = useState<string>('0');
   const [first, setFirst] = useState<number>(0);
   const [second, setSecond] = useState<number>(0);
@@ -193,7 +199,7 @@ export default function Calculator() {
   });
   
   return (
-    <div className="mt-4 mb-4 w-full mx-auto flex flex-col items-center justify-center">
+    <div className="mt-4 mb-4 w-[800px] max-w-full mx-auto flex flex-col items-center justify-center">
       {/* Calculator */}
       <div className="border-[3px] border-black rounded-[18px] bg-black text-center p-1 select-none max-w-max mx-auto">
         {/* inner */}

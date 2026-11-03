@@ -9,6 +9,8 @@ import valleyballImage from "@/assets/valleyball.svg";
 import humanImage from "@/assets/human.svg";
 import cartoonImage from "@/assets/cartoon.svg";
 import { Button } from "@/components/tailgrids/core/button";
+import { checkLogin } from "@/utils/login";
+import { useRouter } from "next/navigation";
 
 // วางนอก component เพื่อไม่ให้สร้าง object ใหม่ทุกครั้งที่ re-render
 const BALL_IMAGES = {
@@ -40,6 +42,9 @@ export default function animation({
   ballRadius: number;
   speed: number;
 }) {
+  const router = useRouter();
+  useEffect(()=>checkLogin(router, "/animation"), [router]);
+
   // ค่า default ถ้าไม่ส่ง props มา
   const _fieldWidth = fieldWidth || 640;
   const _fieldHeight = fieldHeight || 480;
@@ -126,7 +131,7 @@ export default function animation({
   }, [running, _fieldWidth, _fieldHeight, _ballDiameter, _speed]);
   
   return (
-    <div className="mt-4 mb-4 w-[800px] mx-auto flex flex-col items-center justify-center">
+    <div className="mt-4 mb-4 w-[800px] max-w-full mx-auto flex flex-col items-center justify-center">
       {/* กล่องครอบ animation */}
       <div className='mt-3 flex flex-col items-center justify-center' style={{ width: 'fit-content' }}>
         {/* สนาม */}

@@ -1216,6 +1216,6 @@ export const fetchTodos = () => {
             } else {                        //20% chance of failure
                 reject("Failed to fetch todos");
             }
-        },1000 +Math.random()*2000);
+        },1000+Math.random()*2000);
     }); //1-3 seconds delay  
 }
